@@ -54,4 +54,55 @@
 * 정형 데이터
 * 반정형 데이터
 * 비정형 데이터
-<img align="right", src="https://github.com/qlkdkd/Database/assets/71871927/c8c56ab3-86fa-4575-ad98-7f3322a7afe5">
+![image](https://github.com/qlkdkd/Database/assets/71871927/a1c16b01-7cdf-4ddd-bb69-f85fc2b54245)
+
+##### 정형 데이터(structured data)
+* 구조화된 데이터, 즉 미리 정해진 구조에 따라 저장된 데이터
+    * 데이터 구조에 대한 설명과 데이터 내용은 별도로 유지됨
+* 예) 엑셀의 스프레드시트, 관계 데이터베이스의 테이블
+![image](https://github.com/qlkdkd/Database/assets/71871927/87261c8a-cffe-4503-845b-3cb11f984a25)
+
+##### 반정형 데이터(semi-structured data)
+* 구조에 따라 저장된 데이터지만 데이터 내용 안에 구조에 대한 설명이 함께 존재
+* 구조를 파악하는 파싱(parsing) 과정이 필요, 보통 파일 형태로 저장
+* 예) 웹에서 데이터를 교환하기 위해 작성하는 HTML, XML, JSON 문서나 웹 로그, 센서 데이터 등
+![image](https://github.com/qlkdkd/Database/assets/71871927/5a911ad7-ee68-473e-90ea-0d30e6edcd40)
+
+##### 비정형 데이터(unstructured data)
+* 정해진 구조가 없이 저장된 데이터
+* 예) 소셜 데이터의 텍스트, 영상, 이미지, 워드나 PDF 문서와 같은 멀티미디어 데이터
+![image](https://github.com/qlkdkd/Database/assets/71871927/4fb5cf12-d623-41f6-81f9-9a53cc289023)
+
+#### 특성에 따른 데이터 분류
+* 범주형 데이터
+* 수치형 데이터
+  ![image](https://github.com/qlkdkd/Database/assets/71871927/e73a9ba7-63f0-4de9-be7d-ef05dd4fe11c)
+
+##### 범주형 데이터(categorical data)
+* 범주로 구분할 수 있는 값, 즉 종류를 나타내는 값을 가진 데이터
+* 크기 비교와 산술적인 연산이 가능하지 않아 질적 데이터라고도 함
+* 명목형 데이터(nominal data)
+    * 순서, 즉 **서열이 없는 값을 가지는 데이터**
+    * 예) 성별, 혈액형, 학과명, 거주지역, 음식 메뉴 등
+* 순서형 데이터(ordinal data)
+    * 순서, 즉 **서열이 있는 값을 가지는 데이터**
+    * 예) 학년, 학점, 회원 등급
+ 
+##### 수치형 데이터(numerical data)
+* 크기 비교와 산술적인 연산이 가능한 숫자 값을 가진 데이터
+* 양적 데이터라고도 함
+* 이산형 데이터(discrete data)
+    * 개수를 **셀 수 있는 띄엄띄엄 단절된** 숫자 값을 가지는 데이터
+    * 예) 고객 수, 판매량, 합격자 수
+* 연속형 데이터(continuous data)
+    * 측정을 통해 얻어지는 **연속적으로 이어진** 숫자 값을 가지는 데이터
+    * 예) 키, 몸무게, 온도, 점수
+ 
+##### 정성적 데이터와 정량적 데이터
+* 정성적 데이터(qualitative data)
+    * 좁은 의미로는 범주형 데이터
+    * 사람의 주관적인 생각과 평가를 기술한 비정형 데이터
+* 정량적 데이터(quantitative data)
+    * 좁은 의미로는 수치형 데이터
+    * 객관적인 측정을 통해 수치나 도형, 기호 등으로 표현한 정형 데이터
+    > 정량적 데이터에 비해 정성석 데이터가 저장 및 처리 측면에서 더 큰 비용이 드는 경우가 많음
