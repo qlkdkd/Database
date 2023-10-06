@@ -98,4 +98,4 @@
 ## 4. 데이터베이스 관리 시스템의 발전 과정
 #### 1세대: 네트워크 DBMS, 계층 DBMS
 * 네트워크 DBMS: 데이터베이스를 **그래프 형태**로 구성
-      * 예: IDS(Intergrated Data Store)
+    * 예: IDS(Intergrated Data Store)
