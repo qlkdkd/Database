@@ -92,3 +92,10 @@
       * 데이터베이스 의존도가 높은 시스템일수록 가용성과 신뢰성에 치명적임.
 
 ![image](https://github.com/qlkdkd/Database/assets/71871927/71cfedaf-674e-4d61-b530-7f8495a174fb)
+
+---
+
+## 4. 데이터베이스 관리 시스템의 발전 과정
+#### 1세대: 네트워크 DBMS, 계층 DBMS
+* 네트워크 DBMS: 데이터베이스를 **그래프 형태**로 구성
+      * 예: IDS(Intergrated Data Store)
