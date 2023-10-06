@@ -54,4 +54,4 @@
 * 정형 데이터
 * 반정형 데이터
 * 비정형 데이터
-  img align="right", src="https://github.com/qlkdkd/Database/assets/71871927/c8c56ab3-86fa-4575-ad98-7f3322a7afe5">
+<img align="right", src="https://github.com/qlkdkd/Database/assets/71871927/c8c56ab3-86fa-4575-ad98-7f3322a7afe5">
