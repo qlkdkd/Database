@@ -98,3 +98,29 @@
 #### 1세대: 네트워크 DBMS, 계층 DBMS
 * 네트워크 DBMS: 데이터베이스를 **그래프 형태**로 구성
     * 예: IDS(Intergrated Data Store)
+* 계층 DBMS: 데이터베이스를 **트리 형태**로 구성
+   * 예: IMS(Information Management System)
+![image](https://github.com/qlkdkd/Database/assets/71871927/fcd1cca6-a81c-4cf2-9ea8-80ecfdc6f6fb)
+
+#### 2세대: 관계 DBMS
+* 관계 DBMS: 데이터베이스를 **테이블 형태**로 구성
+   * 예: 오라클(Oracle), My SQL서버 액세스(Access), 인포믹스(Informix), 마리아DB(MariaDB)
+   * *(RDBMS, 대부분 사용)*
+![image](https://github.com/qlkdkd/Database/assets/71871927/58fec582-6508-43a2-af23-d176d2ac8629)
+
+#### 3세대: 객체지향 DBMS, 객체관계 DBMS
+* 객체지향 DBMSL **객체를 이용해 데이터베이스를 구성**
+   * 예) 오투(O2), 온투스*(ONTOS), 젬스톤(GemStone)
+* 객체관계 DBMS: **객체지향** DBMS + **관계** DBMS
+   * 예) **관계 DBMS 제품들이 객체지향 기능을 지원하면서 객체관계 DBMS로 분류되기도 함(오라클이 대표적)**
+ 
+#### 4세대: NoSQL, NewSQL DBMS
+* NoSQL DBMS: *비정형 데이터를 처리하는 데 적합하고 확장성이 뛰어남*
+   * *안정성*과 *일관성* 유지를 위한 **복잡한 기능 포기**
+   * 데이터 구조를 미리 정해두지 않는 유연성을 가짐
+   * 여러 대의 컴퓨터에 데이터를 분산하여 저장하고 처리하는 환경에서 주로 사용
+   * 예) ***몽고디비(MongoDB, HBase, 카산드라(Cassandra)***, 레디스(Redis), 네오포제이(Neo4j), 오리엔트(OrientDB) 등
+* NewSQL DBMS: *관계 DBMS의 장점 **+** NoSQL의 확장성 및 유연성*
+   * **정형 및 비정형 데이터를 안정적이고 빠르게 처리 가능**
+   * 예) ***구글 스패너(Spanner), 볼트DB, 누오BD***
+ ![image](https://github.com/qlkdkd/Database/assets/71871927/df932c51-4e1a-491a-8cef-31abea7b6e1c)
