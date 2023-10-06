@@ -94,3 +94,29 @@
    * $R \cup S = S \cup R$
 * 결합적 특징이 있음
    * $(R \cup S)\cup T = R \cup(S \cup T)$
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/e5d4df01-f435-408c-8ddb-ab93c00fc326)
+
+#### 일반 집합 연산자 - 교집합
+* 합병 가능한 두 릴레이션 R과 S의 교집합: $R \cap S$
+   * 릴레이션 R과 S에 공통으로 속하는 튜플로 결과 릴레이션 구성
+* 결과 릴레이션의 특성
+   * 차수는 릴레이션 R과 S의 차수와 같음
+   * 카디널리티는 릴레이션 R과 S의 어떤 카디널리티보다 크지 않음(같거나 작음)
+* 교환적 특징이 있음
+   * $R \cap S = S \cap R$
+* 결합적 특징이 있음
+   * $(R \cap S)\cap T = R \cap (S \cap T)$
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/9fa43ada-cd38-4190-bab9-7cda4b8bce03)
+
+#### 일반 집합 연산자 - 차집합
+* 합병 가능한 두 릴레이션 R과 S의 차집합: $R-S$
+   * 릴레이션 R에는 존재하지만 릴레이션 S에는 존재하지 않는 튜플로 결과 릴레이션 구성
+* 결과 릴레이션 특성
+   * 차수는 릴레이션 R과 S의 차수와 같음
+   * R-S의 카디널리티는 릴레이션 R의 카니널리티와 같거나 작음
+   * $S-R$의 카디널리티는 릴레이션 S의 카디널리티와 같거나 작음
+* 교환적, 결합적 특징이 없음
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/80148e66-fb4a-439d-8c5f-a91a22702467)
