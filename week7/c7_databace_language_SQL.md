@@ -66,3 +66,25 @@
 * `mysql> show database;`
 * `mysql> create database testdb;`
 * `mysql> use testdb;`
+
+### 테이블 생성: create table 문
+```sql
+create table 테이블_이름{
+     속성_이름 데이터_타입[NOT NULL][DEFAULT 기본값]# 테이블을 구성하는 각 속성의 이름, 데이터 타입, 기본 제약 사항 정의
+     [PRIMARY KEY (속성 리스트)# 기본키 정의
+     [UNIQUE (속성_리스트)]# 대체키 정의
+     [FOREIGN KEY(속성_리스트) RERERENCES 테이블_이름(속성_리스트)]# 외래키 저으이
+     [ON DELETE 옵션][ON UPDATE 옵션]
+     [CONSTRAINT 이름][CHECK(조건)]# 데이터 무결성을 위한 제약조건 정의
+```
+
+예제
+```sql
+CREATE TABLE `mall_`.`products` (
+  `pid` INT NOT NULL,
+  `pname` VARCHAR(45) NULL,
+  `pisze` VARCHAR(45) NULL,
+  `pcnt` VARCHAR(45) NULL,
+  PRIMARY KEY (`pid`));
+```
+![image](https://github.com/qlkdkd/Database/assets/71871927/d9c2fa83-c07c-478c-906f-058711e8c3e0)
