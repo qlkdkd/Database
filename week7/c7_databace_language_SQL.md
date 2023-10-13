@@ -87,4 +87,13 @@ CREATE TABLE `mall_`.`products` (
   `pcnt` VARCHAR(45) NULL,
   PRIMARY KEY (`pid`));
 ```
-![image](https://github.com/qlkdkd/Database/assets/71871927/d9c2fa83-c07c-478c-906f-058711e8c3e0)
+
+#### 속성의 정의
+* 테이블을 구성하는 각 속성의 데이터 타입을 선택한 후 널 값 허용 여부와 기본 값 필요 여부를 결정
+* NOT NULL
+     * 속성이 널값을 허용하지 않음을 의미하는 키워드
+     * 예)고객 아이디 varchar(20) not null
+* DEFAULT
+     * 속성의 기본값을 지정하는 키워드
+     * 예) 적립금 int default 0
+     * 예) 담당자 varchar(10) default '방경아'
