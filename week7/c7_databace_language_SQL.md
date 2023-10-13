@@ -54,6 +54,7 @@
 ---
 
 ## 2. SQL을 이용한 데이터 정의
+### [참고: MySQL 사용방법]()
 ### SQL의 데이터 정의 기능
 * 테이블, 생성, 테이블 구조의 변경, 테이블 삭제
 ![image](https://github.com/qlkdkd/Database/assets/71871927/5abd703b-875d-4aca-914f-126ad0fb3835)
