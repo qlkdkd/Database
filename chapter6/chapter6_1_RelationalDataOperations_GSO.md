@@ -178,7 +178,70 @@ $$\sigma_{조건식1}(\sigma{조건식2}(릴레이션))=\sigma_{조건식2}(\sig
 * 결과 릴레이션의 차수는 두 릴레이션의 차수를 더한 것과 같다.
 * 표현법: $릴레이션1 \Join_{A\theta B} 릴레이션2)
     * $\theta=비교연산자(>, >=, <, <=, =, !=)$
+    * A와 B는 같은 도메인으로 정의되어야 함
+* 세타 조인 연산 결과의 릴레이션 차수: 릴레이션1의 차수 + 릴레이션2의 차수
 
 #### 동등조인(equal-join)
 * $\theta=$"="인 세타 조인
-* 표현법: $릴레이션1 \Join_{A=B} 릴레이션2$
+
+#### 자연 조인(natural join)
+* 자연 조인은 동등 조인의 결과 릴레이션에서 중복된 속성을 제거하여 조인 속성을 한번만 나타내고, $\Join_{N}$기호로 표현한다.
+* 표현법: $릴레이션1 \Join_{N} 릴레이션2$
+![image](https://github.com/qlkdkd/Database/assets/71871927/7326ec1c-2673-49e7-b397-ae8a214ca266)
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/2f6113fc-a4f0-413e-b0b3-1b51ed47c966)
+
+### 순수 관계 연산자-디비전(division)
+* 표현법: $릴레이션1 \div 릴레이션2$
+* 릴레이션1 $\div$ 릴레이션2은 릴레이션2의 모든 투플과 관련있는 릴레이션1의 투플로 결과 릴레이션을 구성한다.
+    * 단, 릴레이션1이 릴레이션2의 모든 속성을 포함하고 있어야 연산이 가능함(도메인이 같아야 한다는 의미)
+    * 정수의 나눗셈과 유사
+ 
+![image](https://github.com/qlkdkd/Database/assets/71871927/8c09bc1d-b7db-492b-8d85-9be7f0665fdd)
+![image](https://github.com/qlkdkd/Database/assets/71871927/b4c38b07-d1b7-4ad4-a301-0c398448be7c)
+
+
+## 관계 대수를 이용한 질의 표현 예
+* 사용자의 질의가 단순하여 앞서 살펴본 예처럼 한 가지 연산자만으로 표현이 가능한 경우도 있지만, 대부분 여러 연산지를 함께 사용해 복잡하게 표현되는 경우가 많다.
+ ![image](https://github.com/qlkdkd/Database/assets/71871927/406e1cfe-bf89-42d1-b40e-23059334862d)
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/da5f07d6-38e0-43d6-9134-c23b5853acb2)
+![image](https://github.com/qlkdkd/Database/assets/71871927/3233b5c2-ab0c-412b-9b58-86972f6ab133)
+![image](https://github.com/qlkdkd/Database/assets/71871927/f9516b16-6287-42b0-b9e9-a178d6a9f9a7)
+
+## 확장된 관계 대수 연산자-세미조인(semi-join)
+* 조인 속성으로 프로젝트 연산을 수행한 릴레이션을 이용하는 조인
+* 표현법: $릴레이션1 ⋉ 릴레이션2$
+* 릴레이션2를 조인 속성으로 프로젝트 연산 후, 릴레이션1에 자연 조인하여 결과 릴레이션을 구성
+* 불필요한 속성을 미리 제거하여 조인 연산 비용을 줄이는 장점이 있음
+* 교환적 특징이 없음($R⋉S != S⋉R)$
+![image](https://github.com/qlkdkd/Database/assets/71871927/74c45b36-d01c-430b-b7ae-e4115413589c)
+
+## 확장된 관계 대수 연산자-외부 조인(outer join)
+* 자연 조인 연산에서 제외되는 투플도 결과 릴레이션에 포함시키는 조인
+    * 결과 릴레이션에 속성 값이 없는 경우 널 값으로 처리
+* 분류
+    * 왼쪽 외부조인(⟕): 왼쪽에 있는 릴레이션1에 존재하는 모든 투플을 결과 릴레이션에 포함시킴. 표현법: $릴레이션1 ⟕ 릴레이션2$
+ ![image](https://github.com/qlkdkd/Database/assets/71871927/951b6d48-c14d-4630-9d6e-2efae4665874)
+![image](https://github.com/qlkdkd/Database/assets/71871927/5c9fee39-936b-4caa-be95-dcba6b470ac4)
+
+    * 오른쪽 외부조인(⟖): 오른쪽에 있는 릴레이션2에 존재하는 모든 투플을 결과 릴레이션에 포함시킴. 표현법: $릴레이션1 ⟖ 릴레이션2$
+![image](https://github.com/qlkdkd/Database/assets/71871927/a4d6394f-37e9-4f29-aa2e-e75a13a11bc9)
+![image](https://github.com/qlkdkd/Database/assets/71871927/068629e3-dd10-4237-88d6-2bb6eaf61216)
+
+    * 완전 외부조인(⟗): 두 릴레이션에 있는 모든 투플을 결과 릴레이션에 포함시킴. 표현법: $릴레이션1 ⟗ 릴레이션2$
+  ![image](https://github.com/qlkdkd/Database/assets/71871927/9d44974d-6409-45db-9d01-7b8a11d90beb)
+![image](https://github.com/qlkdkd/Database/assets/71871927/07460c60-679e-4ec1-a8ae-28697bad880a)
+![image](https://github.com/qlkdkd/Database/assets/71871927/2be9eae8-6142-4461-9d4e-82740beaf0ed)
+
+---
+
+# 3. 관계해석
+* 처리를 원하는 데이터가 무엇인지만 기술하는 언어: 비절차 언어
+* 수학의 프레디킷 해석에 기반을 두고 있음
+* 기능과 표현력 측면에서 관계 대수와 동등한 능력을 가짐
+* 분류: 투플 관계 해석, 도메인 관계 해석
+ 
+
+
+
