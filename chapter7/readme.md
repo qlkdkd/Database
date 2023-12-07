@@ -123,62 +123,6 @@ datetime|날짜와 시간
 * `check` 키워드를 사용해 지정한 제약조건에 `constraint` 키워드와 함께 고유의 이름을 부여할 수도 있다.
    * 예: constraint CHK_CPY CHECK(제조업체='한빛제과')
 
-### 예제
-![image](https://github.com/qlkdkd/Database/assets/71871927/46dabcfd-eabc-4856-b812-83c121bf6de8)
-```sql
-create table 고객(
-	고객아이디 varchar(20) not null,
-    고객이름 varchar(10) not null,
-	나이 int,
-    등급 varchar(20) not null,
-    직업 varchar(20),
-    적립금 int default 0,
-    primary key(고객아이디)
-)
-```
-
-![image](https://github.com/qlkdkd/Database/assets/71871927/5ec69339-1d8b-4e1d-8153-c20e6bba1038)
-```sql
-#7-2
-create table 제품(
-	제품번호 char(3) not null,
-    제품명 varchar(20),
-    재고량 int,
-    단가 int,
-    제조업체 varchar(20),
-    primary key(제품번호),
-    check(재고량>=0 and 재고량<=10000)
-);
-```
-
-![image](https://github.com/qlkdkd/Database/assets/71871927/b5fc41f6-b825-4093-9609-d57d7e7fd46f)
-```sql
-#7-3
-create table 주문(
-	주문번호 char(3) not null,
-    주문고객 varchar(20),
-    주문제품 char(3),
-    수량 int,
-    배송지 varchar(30),
-    주문일자 date,
-    primary key(주문번호),
-    foreign key(주문고객) references 고객(고객아이디),
-    foreign key(주문제품) references 제품(제품번호)
-);
-```
-
-![image](https://github.com/qlkdkd/Database/assets/71871927/99ba988c-fd50-46f5-aa0d-fd73e3465bed)
-```sql
-#7-4
-create table 배송업체(
-	업체번호 char(3),
-    업체명 varchar(20),
-    주소 varchar(100),
-    전화번호 varchar(20),
-    primary key(업체번호)
-);
-```
-
 ## 테이블 변경: alter table문
 ### 새로운 속성 추가
 * 테이블은 `alter table`문으로 변경할 수 있다. `alter table`문을 이용해 새로운 속성 추가, 기존 속성 삭제, 새로운 제약조건 추가, 기존 제약조건 삭제 등이 가능하다.
@@ -188,10 +132,7 @@ alter table(
    add 속성이름 데이터타입 [not null] [default 기본값]
 );
 ```
-![image](https://github.com/qlkdkd/Database/assets/71871927/face469e-6358-4ab5-a0ac-cea74e5105cb)
-```sql
-alter table 고객 add 가입날짜 date;
-```
+
 
 ### 기존 속성 삭제
 ```sql
@@ -199,27 +140,16 @@ alter table 테이블이름 drop column 속성_이름;
 ```
 * 만약 삭제할 속성과 관련된 제약조건이 존재하거나 이 속성을 참조하는 다른 속성이 존재하는 경우에 속성을 삭제할 수 없음
     * 관련된 제약조건이나 참조하는 다른 속성을 먼저 삭제한 후 해당 속성을 삭제해야 함
-![image](https://github.com/qlkdkd/Database/assets/71871927/9408f6f2-a727-440b-9168-7f5501cb37f1)
-```sql
-alter table 고객 drop column 가입날짜;
-```
+
 
 ### 새로운 제약조건의 추가
 ```sql
 alter table 테이블이름 add constraint 제약조건이름 제약조건내용;
 ```
-![image](https://github.com/qlkdkd/Database/assets/71871927/0a94cee7-3b32-4c37-8928-a169844e2ae4)
-```sql
-alter table 고객 add constraint chk_age check(나이>=20);
-```
 
 ### 기존 제약조건의 삭제
 ```sql
 alter table 테이블이름 drop constraint 제약조건이름;
-```
-![image](https://github.com/qlkdkd/Database/assets/71871927/35f9f63f-cc53-4dc1-8daa-fdaecb24667f)
-```sql
-alter table 고객 drop constraint chk_age
 ```
 
 ## 테이블 삭제: drop table문
@@ -228,11 +158,6 @@ drop table 테이블이름;
 ```
 * 삭제할 테이블을 참조하는 테이블이 있다면 삭제가 수행되지 않음
     * 삭제하고자 하는 테이블을 참조하는 외래키의 제약조건을 먼저 삭제해야 함.
-![image](https://github.com/qlkdkd/Database/assets/71871927/b657aa26-6995-40b3-b5d2-13a1f0efcaac)
-```sql
-drop table 배송업체;
-```
----
 
 # 7-3. sql을 이용한 데이터 조작
 ## sql의 데이터 조작 기능
@@ -260,24 +185,6 @@ values(속성값리스트);
 ![image](https://github.com/qlkdkd/Database/assets/71871927/6b768272-33ca-4648-85a7-d01bafaedf60)
 ![image](https://github.com/qlkdkd/Database/assets/71871927/07514361-b00d-4e29-bb75-78d6422e1e2b)
 
-![image](https://github.com/qlkdkd/Database/assets/71871927/fd1f35ad-9bf5-492e-97f2-22c9fec910a8)
-```sql
-insert
-into 고객(고객아이디, 고객이름, 나이, 등급, 직업, 적립금)
-values ('strawberry', '최유경', 30, 'vip', '공무원', 100);
-
-select * from 고객;
-```
-
-![image](https://github.com/qlkdkd/Database/assets/71871927/7a9536b9-eb26-4b8b-9fcf-5435b6645aa9)
-```sql
-insert
-into 고객(고객아이디, 고객이름, 나이, 등급, 적립금)
-values('tomato', '정은심', 36, 'gold', 4000);
-
-select * from 고객;
-```
-
 ### 부속 질의문을 이용한 데이터 삽입
 * `select`문을 이용하여 다른 테이블에서 검색한 데이터를 투플로 삽입
 ```sql
@@ -287,13 +194,26 @@ select문;
 ```
 
 ## 데이터 검색: select문
-* 기본 검색
-    * `select`키워드와 함께 검색하고 싶은 속성의 이름을 콤마(,)로 구분하여 차례로 나열
-    * `from`키워드와 함께 검색하고 싶은 속성이 있는 테이블의 이름을 콤마(,)로 구분하여 차례로 나열
-    * `select`문은 테이블을 대상으로 하고 수행 결과도 테이블임
+### 기본 검색
+* `select`키워드와 함께 검색하고 싶은 속성의 이름을 콤마(,)로 구분하여 차례로 나열
+* `from`키워드와 함께 검색하고 싶은 속성이 있는 테이블의 이름을 콤마(,)로 구분하여 차례로 나열
+* `select`문은 테이블을 대상으로 하고 수행 결과도 테이블임
 ```sql
 select [all|distinct] 속성리스트
 from 테이블리스트;
 ```
-    * `all`: 결과 테이블이 투플의 중복을 허용하도록 지정, 생략 가능
-    * `distinct`: 결과 테이블이 투플의 중복을 허용하지 않도록 지정
+* `all`: 결과 테이블이 투플의 중복을 허용하도록 지정, 생략 가능
+* `distinct`: 결과 테이블이 투플의 중복을 허용하지 않도록 지정
+* \*를 사용하면 테이블에 존재하는 모든 속성을 검색하기 위해 속성의 이름을 전부 나열하지 않고 검색할 수 있음
+
+* `as`키워드를 이용해 결과 테이블에서 속성의 이름을 바꾸어 출력 가능
+    * 원래 테이블의 속성 이름이 실제 바뀌진 않음
+  	 * select문의 결과 테이블에서만 지정한 이름으로 출력되는 것 뿐
+    * 지정하는 이름에 공백이 포함되어 있으면 오라클에서는 큰따옴표로 묶어주고 MySQL서버에서는 작은따옴표로 묶어줘야함
+    * as키워드 생략 가능
+
+### 산술식을 이용한 검색
+* select 키워드와 함께 산술식을 제시할 수 있음
+    * 산술식: 속성의 이름과 +, -, *, /등의 산술 연산자와 상수로 구성
+* 결과 테이블에서만 계산된 결과 값이 출력됨
+    * 속성의 값이 실제로 변경되는 것은 아님
