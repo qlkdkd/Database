@@ -169,6 +169,7 @@ create table 주문(
 
 ![image](https://github.com/qlkdkd/Database/assets/71871927/99ba988c-fd50-46f5-aa0d-fd73e3465bed)
 ```sql
+#7-4
 create table 배송업체(
 	업체번호 char(3),
     업체명 varchar(20),
@@ -179,6 +180,7 @@ create table 배송업체(
 ```
 
 ## 테이블 변경: alter table문
+### 새로운 속성 추가
 * 테이블은 `alter table`문으로 변경할 수 있다. `alter table`문을 이용해 새로운 속성 추가, 기존 속성 삭제, 새로운 제약조건 추가, 기존 제약조건 삭제 등이 가능하다.
 * `alter table`문의 기본 형식
 ```sql
@@ -188,5 +190,110 @@ alter table(
 ```
 ![image](https://github.com/qlkdkd/Database/assets/71871927/face469e-6358-4ab5-a0ac-cea74e5105cb)
 ```sql
-
+alter table 고객 add 가입날짜 date;
 ```
+
+### 기존 속성 삭제
+```sql
+alter table 테이블이름 drop column 속성_이름;
+```
+* 만약 삭제할 속성과 관련된 제약조건이 존재하거나 이 속성을 참조하는 다른 속성이 존재하는 경우에 속성을 삭제할 수 없음
+    * 관련된 제약조건이나 참조하는 다른 속성을 먼저 삭제한 후 해당 속성을 삭제해야 함
+![image](https://github.com/qlkdkd/Database/assets/71871927/9408f6f2-a727-440b-9168-7f5501cb37f1)
+```sql
+alter table 고객 drop column 가입날짜;
+```
+
+### 새로운 제약조건의 추가
+```sql
+alter table 테이블이름 add constraint 제약조건이름 제약조건내용;
+```
+![image](https://github.com/qlkdkd/Database/assets/71871927/0a94cee7-3b32-4c37-8928-a169844e2ae4)
+```sql
+alter table 고객 add constraint chk_age check(나이>=20);
+```
+
+### 기존 제약조건의 삭제
+```sql
+alter table 테이블이름 drop constraint 제약조건이름;
+```
+![image](https://github.com/qlkdkd/Database/assets/71871927/35f9f63f-cc53-4dc1-8daa-fdaecb24667f)
+```sql
+alter table 고객 drop constraint chk_age
+```
+
+## 테이블 삭제: drop table문
+```sql
+drop table 테이블이름;
+```
+* 삭제할 테이블을 참조하는 테이블이 있다면 삭제가 수행되지 않음
+    * 삭제하고자 하는 테이블을 참조하는 외래키의 제약조건을 먼저 삭제해야 함.
+![image](https://github.com/qlkdkd/Database/assets/71871927/b657aa26-6995-40b3-b5d2-13a1f0efcaac)
+```sql
+drop table 배송업체;
+```
+---
+
+# 7-3. sql을 이용한 데이터 조작
+## sql의 데이터 조작 기능
+* 데이터 검색, 새로운 데이터 삽입, 데이터 수정, 데이터 삭제
+![image](https://github.com/qlkdkd/Database/assets/71871927/f96195b8-4a08-44b4-b0ba-4c4661b35570)
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/f5a657c5-9af7-4754-aea8-ca84c9111ce7)
+![image](https://github.com/qlkdkd/Database/assets/71871927/cd3162a0-498e-4719-858a-10abe62d49ad)
+![image](https://github.com/qlkdkd/Database/assets/71871927/0e6e41e7-484f-427f-bd6d-5ca2d0139887)
+
+## 데이터 삽입
+### 데이터 직접 삽입
+* 테이블에 투플을 직접 삽입
+```sql
+insert
+into 테이블이름[(속성리스트)]
+values(속성값리스트);
+```
+* `into`키워드와 함께 투플을 삽입할 테이블의 이름을 제시한 후, 속성의 이름을 나열하는데 이 나열순서대로 `values`키워드 다음의 속성 값들이 차례로 삽입됨.
+* `into`절의 속성 이름과 `value`절의 속성 값은 손서대로 일대일 대응되고 개수도 같아야 한다.
+* `into`절의 속성 이름이 나열 순서대로 `values`키워드 다음의 속성 값들이 차례로 삽입됨
+* `into`절에서 속성 이름의 리스트 생략 가능: 생략한 경우에는 테이블을 정의할 때 지정한 속성의 순서대로 values절의 속성 값이 삽입됨
+* `value`절에 나열되는 속성 값은 문자나 날짜 타입의 데이터인 경우에는 작은따옴표로 묶어야 함
+![image](https://github.com/qlkdkd/Database/assets/71871927/d04aa5ac-dccd-44e1-9363-c9cd41fd4609)
+![image](https://github.com/qlkdkd/Database/assets/71871927/6b768272-33ca-4648-85a7-d01bafaedf60)
+![image](https://github.com/qlkdkd/Database/assets/71871927/07514361-b00d-4e29-bb75-78d6422e1e2b)
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/fd1f35ad-9bf5-492e-97f2-22c9fec910a8)
+```sql
+insert
+into 고객(고객아이디, 고객이름, 나이, 등급, 직업, 적립금)
+values ('strawberry', '최유경', 30, 'vip', '공무원', 100);
+
+select * from 고객;
+```
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/7a9536b9-eb26-4b8b-9fcf-5435b6645aa9)
+```sql
+insert
+into 고객(고객아이디, 고객이름, 나이, 등급, 적립금)
+values('tomato', '정은심', 36, 'gold', 4000);
+
+select * from 고객;
+```
+
+### 부속 질의문을 이용한 데이터 삽입
+* `select`문을 이용하여 다른 테이블에서 검색한 데이터를 투플로 삽입
+```sql
+insert
+into 테이블이름[(속성리스트)]
+select문;
+```
+
+## 데이터 검색: select문
+* 기본 검색
+    * `select`키워드와 함께 검색하고 싶은 속성의 이름을 콤마(,)로 구분하여 차례로 나열
+    * `from`키워드와 함께 검색하고 싶은 속성이 있는 테이블의 이름을 콤마(,)로 구분하여 차례로 나열
+    * `select`문은 테이블을 대상으로 하고 수행 결과도 테이블임
+```sql
+select [all|distinct] 속성리스트
+from 테이블리스트;
+```
+    * `all`: 결과 테이블이 투플의 중복을 허용하도록 지정, 생략 가능
+    * `distinct`: 결과 테이블이 투플의 중복을 허용하지 않도록 지정
