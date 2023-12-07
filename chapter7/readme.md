@@ -108,4 +108,85 @@ datetime|날짜와 시간
       * 별도로 지정하지 않으면 `on delete no action`이 기본으로 선택됨
       > * on delete no action: 투플을 삭제하지 못하게 함
       >    * 부서 테이블을 참조하는 사원 테이블이 존재하므로 부서 테이블의 투플을 삭제하지 못하게 함
-      > * on delete cascade: 사원테이블에서 홍보부에 근무하는 정소
+      > * on delete cascade: 관련 투플을 함께 삭제
+      >    * 사원 테이블에서 정소화 사원에 대한 투플도 함께 삭제
+      > * on delete set null: 관련 투플의 외래키 값을 null로 변경한다.
+      >    * 사원 테이블에서 정소화 사원의 소속부서 속성 값을 null로 변경
+      > * on delete set default: 관련 투플의 외래키 값을 미리 지정한 기본 값으로 변경한다.
+      >    * 사원 테이블에서 정소화 사원의 소속부서 속성 값을 기본값으로 변경
+   * 참조되는 테이블의 투플이 변경될 때도 다음 네 가지 중 한 가지 방법으로 처리하도록 선택할 수 있다.
+      * 사원 테이블을 정의하는 `create table`문을 작성할 때 4가지 방법 중 하나를 지정하면 됨
+         * 지정하지 않으면 `on update no action`이 기본으로 선택
+### 데이터 무결성 제약조건의 정의
+* `create table`문으로 테이블을 정의할 때 **`check` 키워드를 사용해 특정 속성에 대한 제약 조건 지정할 수 있음**
+   * 예: check(재고량>0 and 재고량<=10000)
+* `check` 키워드를 사용해 지정한 제약조건에 `constraint` 키워드와 함께 고유의 이름을 부여할 수도 있다.
+   * 예: constraint CHK_CPY CHECK(제조업체='한빛제과')
+
+### 예제
+![image](https://github.com/qlkdkd/Database/assets/71871927/46dabcfd-eabc-4856-b812-83c121bf6de8)
+```sql
+create table 고객(
+	고객아이디 varchar(20) not null,
+    고객이름 varchar(10) not null,
+	나이 int,
+    등급 varchar(20) not null,
+    직업 varchar(20),
+    적립금 int default 0,
+    primary key(고객아이디)
+)
+```
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/5ec69339-1d8b-4e1d-8153-c20e6bba1038)
+```sql
+#7-2
+create table 제품(
+	제품번호 char(3) not null,
+    제품명 varchar(20),
+    재고량 int,
+    단가 int,
+    제조업체 varchar(20),
+    primary key(제품번호),
+    check(재고량>=0 and 재고량<=10000)
+);
+```
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/b5fc41f6-b825-4093-9609-d57d7e7fd46f)
+```sql
+#7-3
+create table 주문(
+	주문번호 char(3) not null,
+    주문고객 varchar(20),
+    주문제품 char(3),
+    수량 int,
+    배송지 varchar(30),
+    주문일자 date,
+    primary key(주문번호),
+    foreign key(주문고객) references 고객(고객아이디),
+    foreign key(주문제품) references 제품(제품번호)
+);
+```
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/99ba988c-fd50-46f5-aa0d-fd73e3465bed)
+```sql
+create table 배송업체(
+	업체번호 char(3),
+    업체명 varchar(20),
+    주소 varchar(100),
+    전화번호 varchar(20),
+    primary key(업체번호)
+);
+```
+
+## 테이블 변경: alter table문
+* 테이블은 `alter table`문으로 변경할 수 있다. `alter table`문을 이용해 새로운 속성 추가, 기존 속성 삭제, 새로운 제약조건 추가, 기존 제약조건 삭제 등이 가능하다.
+* `alter table`문의 기본 형식
+```sql
+alter table(
+   add 속성이름 데이터타입 [not null] [default 기본값]
+);
+```
+![image](https://github.com/qlkdkd/Database/assets/71871927/face469e-6358-4ab5-a0ac-cea74e5105cb)
+```sql
+
+```
