@@ -229,14 +229,39 @@ from 테이블리스트
    * 'a'<'c', '2022-12-01'<'2022-12-02'
 * 조건에서 숫자 값은 그대로 작성해도 되지만 문자나 날짜값은 속성의 이름과 구별할 수 있도록 작은따옴표로 묶어야 함
 * 논리 연산자는 조건을 여러개 결합하거나 조건을 만족하지 않는 데이터를 검색하고자 할 때 이용
-연산자|의미
----|---
-=|같다.
-<>|다르다
-<|작다
->|크다
-<=|작거나 같다
->=|크거나 같다
-and|모든 조건을 만족해야 검색한다.
-or|여러 조건 중 한 가지만 만족해도 검색한다.
-not|조건을 만족하지 않는 것만 검색한다.
+![image](https://github.com/qlkdkd/Database/assets/71871927/e3d4417e-e885-4406-88e0-30eb73b1b94c)
+
+### like를 이용한 검색
+* 검색조건을 부분적으로 알고 있다면 like 키워드를 이용해 검색
+* 단, like 키워드는 문자열을 이용하는 조건에만 사용할 수 있음
+
+![image](https://github.com/qlkdkd/Database/assets/71871927/f8b3afc9-c917-417b-bb8a-be63f4befb1d)
+![image](https://github.com/qlkdkd/Database/assets/71871927/f1cbafc2-322d-4ad3-a7ba-bfa2bb3b6659)
+
+### null을 이용한 검색
+* is null: 검색 조건에서 특정 속성의 값이 널값인지를 비교
+* is not null: 특정 속성의 값이 널 값이 아닌지 비교
+
+### 정렬검색
+* select 문의 검색 결과 테이블은 일반적으로 dbms가 정한 순서대로 출력
+* 결과 테이블의 내용을 사용자가 원하는 순서로 출력하려면 order by 키워드 사용
+```sql
+select [all|distinct] 속성리스트
+from 테이블리스트
+[where 조건]
+[order by속성리스트[asc|desc]]
+```
+* order by 키워드와 함께 정렬 기준이 되는 속성과 정렬 방식을 지정
+   * 오름차순: acs
+   * 내림차순: desc
+* 여러 기준에 따라 정렬하려면 정렬 기준이 되는 속성들을 차례대로 제시
+
+### 집계함수를 이용한 검색
+* 특정 속성 값을 통계적으로 계산한 결과를 검색하기 위해 집계 함수를 이용
+   * 집계 함수(aggregate function)
+      * 열함수(column function)이라고도 함
+      * 개수, 합계, 평균, 최댓값, 최솟값의 계산 기능 제공
+   * 집계 함수 사용시 주의사항
+      * 집계 함수는 널인 속성 값은 제외하고 계산함
+      * 집계 함수는 where절에서는 사용할 수 없고, select절이나 having절에서만 사용 가능
+ ![image](https://github.com/qlkdkd/Database/assets/71871927/7a443c1f-7508-415d-98f1-68def447b0e5)
